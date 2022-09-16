@@ -25,8 +25,10 @@ export const pubSub: PubSub = {
   notify(event) {
     this.observers.forEach((observer) => observer(event));
   },
-  unsubscribe() {
-    // TODO: otherwise components will subscribe multiple times
+  unsubscribe(event) {
+    this.observers = this.observers.filter(
+      (subscriber) => subscriber !== event
+    );
   },
 };
 
